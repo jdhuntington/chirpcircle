@@ -9,9 +9,8 @@ function PostListItem(props) {
           {props.post.title}
         </Link>
       </h3>
-      <p className="author-name">By {props.post.name}</p>
+      <p className="author-name">By {props.post.username}</p>
       <p className="post-desc">{props.post.content}</p>
-      <p className="post-action"><a href="#" onClick={props.onDelete}>Delete Post</a></p>
       <hr className="divider"/>
     </div>
   );
@@ -19,10 +18,7 @@ function PostListItem(props) {
 
 PostListItem.propTypes = {
   post: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
-    slug: PropTypes.string.isRequired,
     cuid: PropTypes.string.isRequired,
   }).isRequired,
 

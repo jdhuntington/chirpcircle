@@ -4,13 +4,10 @@ const initialState = { posts: [], selectedPost: null };
 
 const postReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionTypes.ADD_POST :
+    case ActionTypes.ADD_CHIRP :
       return {
         posts: [{
-          name: action.name,
-          title: action.title,
           content: action.content,
-          slug: action.slug,
           cuid: action.cuid,
           _id: action._id,
         }, ...state.posts],
@@ -32,11 +29,6 @@ const postReducer = (state = initialState, action) => {
       return {
         post: action.post,
         posts: state.posts,
-      };
-
-    case ActionTypes.DELETE_POST :
-      return {
-        posts: state.posts.filter((post) => post._id !== action.post._id),
       };
 
     default:

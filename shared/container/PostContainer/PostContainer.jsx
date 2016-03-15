@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import PostListView from '../PostListView/PostListView';
 import PostCreateView from '../../components/PostCreateView/PostCreateView';
+import CreateChirp from '../../components/CreateChirp/CreateChirp';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import { connect } from 'react-redux';
@@ -14,6 +15,7 @@ class PostContainer extends Component {
     };
     this.handleClick = this.handleClick.bind(this);
     this.add = this.add.bind(this);
+    this.addChirp = this.addChirp.bind(this);
   }
 
   handleClick(e) {
@@ -31,19 +33,23 @@ class PostContainer extends Component {
     });
   }
 
+  addChirp(content) {
+    this.props.dispatch(Actions.addChirpRequest({ content }));
+  }
+
   componentDidMount() {
     if(this.props.posts.length === 0) {
       this.props.dispatch(Actions.fetchPosts());
     }
   }
 
-  render() {
+    render() {
+        console.log(this.props.posts);
     return (
       <div>
         <Header onClick={this.handleClick} />
         <div className="container">
-          <PostCreateView addPost={this.add}
-            showAddPost={this.state.showAddPost}/>
+          <CreateChirp addChirp={this.addChirp} />
           <PostListView posts={this.props.posts}/>
         </div>
         <Footer />

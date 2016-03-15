@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
-const chirpSchema = new Schema({
+var properties = {
     username: { type: 'String', required: true },
     loc: {
         type: [Number],
@@ -9,7 +9,14 @@ const chirpSchema = new Schema({
     },
     cuid: { type: 'String', required: true },
     content: { type: 'String', required: true },
-    dateAdded: { type: 'Date', default: Date.now, required: true },
-});
+    dateAdded: { type: 'Date', default: Date.now, required: true }
+};
 
-export default mongoose.model('Chirp', chirpSchema);
+var options = {
+    safe: {
+        w: 'majority',
+        wtimeout: 10000
+    }
+};
+
+export default mongoose.model('Chirp', new Schema(properties, options));

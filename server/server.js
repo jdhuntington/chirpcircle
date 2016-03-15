@@ -29,6 +29,7 @@ import { match, RouterContext } from 'react-router';
 import routes from '../shared/routes';
 import { fetchComponentData } from './util/fetchData';
 import posts from './routes/post.routes';
+import chirps from './routes/chirp.routes';
 import dummyData from './dummyData';
 import serverConfig from './config';
 
@@ -48,6 +49,7 @@ app.use(bodyParser.json({ limit: '20mb' }));
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
 app.use(Express.static(path.resolve(__dirname, '../static')));
 app.use('/api', posts);
+app.use('/chirp-api', chirps);
 
 // Render Initial HTML
 const renderFullPage = (html, initialState) => {
@@ -59,10 +61,11 @@ const renderFullPage = (html, initialState) => {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>MERN Starter - Blog App</title>
+        <title>ChirpCircle</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.0.16/css/bulma.min.css" />
         <link rel="stylesheet" href=${cssPath} />
-        <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'/>
-        <link rel="shortcut icon" href="http://res.cloudinary.com/hashnode/image/upload/v1455629445/static_imgs/mern/mern-favicon-circle-fill.png" type="image/png" />
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300|Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
       </head>
       <body>
         <div id="root">${html}</div>

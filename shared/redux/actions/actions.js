@@ -15,6 +15,15 @@ export function addPost(post) {
   };
 }
 
+export function addChirp(chirp) {
+  return {
+    type: ActionTypes.ADD_CHIRP,
+    content: chirp.content,
+    cuid: chirp.cuid,
+    _id: chirp._id,
+  };
+}
+
 export function changeSelectedPost(slug) {
   return {
     type: ActionTypes.CHANGE_SELECTED_POST,
@@ -37,6 +46,22 @@ export function addPostRequest(post) {
         'Content-Type': 'application/json',
       }),
     }).then((res) => res.json()).then(res => dispatch(addPost(res.post)));
+  };
+}
+
+export function addChirpRequest(chirp) {
+  return (dispatch) => {
+    fetch(`${baseURL}/chirp-api/addChirp`, {
+      method: 'post',
+      body: JSON.stringify({
+          chirp: {
+          content: chirp.content
+        },
+      }),
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+    }).then((res) => res.json()).then(res => dispatch(addChirp(res.chirp)));
   };
 }
 
@@ -74,9 +99,9 @@ export function addPosts(posts) {
 
 export function fetchPosts() {
   return (dispatch) => {
-    return fetch(`${baseURL}/api/getPosts`).
+    return fetch(`${baseURL}/chirp-api/getChirps`).
       then((response) => response.json()).
-      then((response) => dispatch(addPosts(response.posts)));
+      then((response) => dispatch(addPosts(response.chirps)));
   };
 }
 
