@@ -12,11 +12,6 @@ function PostListView(props) {
           onClick={function handleClick() {
             props.dispatch(Actions.addSelectedPost(post));
           }}
-          onDelete={function handleDelete() {
-            if (confirm('Do you want to delete this post')) { // eslint-disable-line
-              props.dispatch(Actions.deletePostRequest(post));
-            }
-          }}
         />
         ))
       }

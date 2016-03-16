@@ -8,8 +8,9 @@ class CreateChirp extends Component {
 
     addChirp() {
         const contentRef = this.refs.content;
-        if (contentRef.value) {
-            this.props.addChirp(contentRef.value);
+        const usernameRef = this.refs.username;
+        if (contentRef.value && usernameRef.value) {
+            this.props.addChirp(usernameRef.value, contentRef.value);
             contentRef.value = '';
         }
     }
@@ -17,11 +18,18 @@ class CreateChirp extends Component {
     render() {
         return (
             <div>
-            <div className="form-content">
-            <h2 className="form-title">Create new chirp</h2>
-            <textarea placeholder="Chirp Content" className="form-field" ref="content"></textarea>
-            <a className="chirp-submit-button align-right" href="#" onClick={this.addChirp}>Submit</a>
-            </div>
+            <p className="control">
+            <label className="label">What's your name?</label>
+            <input type="text" placeholder="what's up?" className="input" ref="username"></textarea>
+            </p>
+
+            <p className="control">
+            <label className="label">Chirp about something!...</label>
+            <textarea placeholder="what's up?" className="textarea" ref="content"></textarea>
+            </p>
+            <p className="control">
+            <button className="button is-primary" onClick={this.addChirp}>Chirp!</button>
+            </p>
             </div>
         );
     }

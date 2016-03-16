@@ -1,11 +1,15 @@
 import React from 'react';
 
 function Footer() {
-  return (
-   <div className="footer">
-     <p>CHIRP!</p>
-   </div>
- );
+    return (
+        <footer className="footer">
+        <div className="container">
+        <div className="content is-centered">
+        <p>CHIRP!</p>
+        </div>
+        </div>
+        </footer>
+    );
 }
 
 export default Footer;

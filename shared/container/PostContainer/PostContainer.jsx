@@ -33,8 +33,8 @@ class PostContainer extends Component {
     });
   }
 
-  addChirp(content) {
-    this.props.dispatch(Actions.addChirpRequest({ content }));
+  addChirp(username, content) {
+    this.props.dispatch(Actions.addChirpRequest({ username, content }));
   }
 
   componentDidMount() {
@@ -44,14 +44,21 @@ class PostContainer extends Component {
   }
 
     render() {
-        console.log(this.props.posts);
     return (
       <div>
         <Header onClick={this.handleClick} />
+        <section className="section">
         <div className="container">
-          <CreateChirp addChirp={this.addChirp} />
-          <PostListView posts={this.props.posts}/>
+        <div className="columns">
+        <div className="column">
+        <PostListView posts={this.props.posts}/>
         </div>
+        <div className="column">
+        <CreateChirp addChirp={this.addChirp} />
+        </div>
+        </div>
+        </div>
+        </section>
         <Footer />
       </div>
     );

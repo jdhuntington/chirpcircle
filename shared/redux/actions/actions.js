@@ -55,7 +55,8 @@ export function addChirpRequest(chirp) {
       method: 'post',
       body: JSON.stringify({
           chirp: {
-          content: chirp.content
+              content: chirp.content,
+              username: chirp.username
         },
       }),
       headers: new Headers({
