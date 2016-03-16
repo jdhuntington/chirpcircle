@@ -20,7 +20,7 @@ class CreateChirp extends Component {
             <div>
             <p className="control">
             <label className="label">What's your name?</label>
-            <input type="text" placeholder="what's up?" className="input" ref="username"></textarea>
+            <input type="text" placeholder="John Doe" className="input" ref="username" />
             </p>
 
             <p className="control">
