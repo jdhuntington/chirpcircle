@@ -33,7 +33,7 @@ export function getChirp(req, res) {
 }
 
 export function getChirps(req, res) {
-  Chirp.find().sort('-dateAdded').exec((err, chirps) => {
+    Chirp.find().sort('-dateAdded').limit(50).exec((err, chirps) => {
     if (err) {
       return res.status(500).send(err);
     }
