@@ -1,6 +1,7 @@
 var benchrest = require('bench-rest');
 var chanceReq = require('chance');
 var chance = new chanceReq();
+var hostname = process.argv[2];
 
 var dataFn = function() {
   var data = {
@@ -19,7 +20,7 @@ var dataFn = function() {
 
 var flow = {
   main: [
-    { post: 'http://104.40.13.35/chirp-api/addChirp', json: dataFn },
+    { post: 'http://' + hostname + '/chirp-api/addChirp', json: dataFn },
     //        { get: 'http://localhost:8000/foo_#{INDEX}' }
   ]
 };
