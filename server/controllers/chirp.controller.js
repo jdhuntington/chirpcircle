@@ -40,3 +40,28 @@ export function getChirps(req, res) {
         res.json({ chirps });
     });
 }
+
+export function getNearbyChirps(req, res) {
+    var lat = req.query.lat;
+    var lng = req.query.lng;
+    var distance = 1000 * 5;    // 50km
+    Chirp
+        .find({
+            loc: {
+                '$near': {
+                    '$maxDistance': distance,
+                    '$geometry': {
+                        type: 'Point', coordinates: [ lat, lng ]
+                    }
+                }
+            }
+        })
+        .sort('-dateAdded')
+        .limit(50)
+        .exec((err, chirps) => {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            res.json({ chirps });
+        });
+}
