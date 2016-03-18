@@ -51,7 +51,7 @@ export function getNearbyChirps(req, res) {
                 '$near': {
                     '$maxDistance': distance,
                     '$geometry': {
-                        type: 'Point', coordinates: [ lat, lng ]
+                        type: 'Point', coordinates: [ lng, lat ]
                     }
                 }
             }

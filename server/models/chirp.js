@@ -3,9 +3,12 @@ const Schema = mongoose.Schema;
 
 var properties = {
     username: { type: 'String', required: true },
-    loc: {
-        type: [Number],
-        index: '2d'
+    loc : {
+        type: {
+            type: String,
+            default: 'Point'
+        },
+        coordinates: [Number]
     },
     cuid: { type: 'String', required: true },
     content: { type: 'String', required: true },
@@ -18,5 +21,6 @@ var options = {
         wtimeout: 10000
     }
 };
-
-export default mongoose.model('Chirp', new Schema(properties, options));
+var schema = new Schema(properties, options);
+schema.index({ loc : '2dsphere' });
+export default mongoose.model('Chirp', schema);
