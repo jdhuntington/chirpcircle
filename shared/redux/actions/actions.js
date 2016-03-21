@@ -32,6 +32,22 @@ export function changeSelectedPost(slug) {
     };
 }
 
+export function updateLocation(position) {
+    return {
+        type: ActionTypes.UPDATE_LOCATION,
+        position: position
+    };
+}
+
+export function loadNearbyChirps() {
+    return (dispatch, getState) => {
+        var coordinates = getState().coordinates;
+        return fetch(`${baseURL}/chirp-api/getNearbyChirps?lng=${coordinates[0]}&lat=${coordinates[1]}`).
+            then((response) => response.json()).
+            then((response) => dispatch(addPosts(response.chirps)));
+    };
+}
+
 export function addPostRequest(post) {
     return (dispatch) => {
         fetch(`${baseURL}/api/addPost`, {
@@ -51,13 +67,15 @@ export function addPostRequest(post) {
 }
 
 export function addChirpRequest(chirp) {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        var coordinates = getState().coordinates;
         fetch(`${baseURL}/chirp-api/addChirp`, {
             method: 'post',
             body: JSON.stringify({
                 chirp: {
                     content: chirp.content,
-                    username: chirp.username
+                    username: chirp.username,
+                    loc: { coordinates: coordinates }
                 },
             }),
             headers: new Headers({

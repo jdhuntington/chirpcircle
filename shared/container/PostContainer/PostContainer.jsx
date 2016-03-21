@@ -73,6 +73,7 @@ PostContainer.contextTypes = {
 function mapStateToProps(store) {
   return {
     posts: store.posts,
+    coordinates: store.coordinates
   };
 }
 
