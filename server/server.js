@@ -51,6 +51,9 @@ app.use(Express.static(path.resolve(__dirname, '../static')));
 app.use('/api', posts);
 app.use('/chirp-api', chirps);
 
+
+var mapApiKey = "AIzaSyDDTnEFQGV7RKaTDH1o9F3bn-QMS-RsblI";
+
 // Render Initial HTML
 const renderFullPage = (html, initialState) => {
   const cssPath = process.env.NODE_ENV === 'production' ? '/css/app.min.css' : '/css/app.css';
@@ -66,6 +69,7 @@ const renderFullPage = (html, initialState) => {
         <link rel="stylesheet" href=${cssPath} />
         <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300|Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <script src="https://maps.googleapis.com/maps/api/js?key=${mapApiKey}"></script>
       </head>
       <body>
         <div id="root">${html}</div>
