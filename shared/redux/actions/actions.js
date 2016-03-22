@@ -21,6 +21,7 @@ export function addChirp(chirp) {
         content: chirp.content,
         username: chirp.username,
         cuid: chirp.cuid,
+        loc: chirp.loc,
         _id: chirp._id,
     };
 }

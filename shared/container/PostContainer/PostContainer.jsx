@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import PostListView from '../PostListView/PostListView';
+import ChirpMap from '../ChirpMap/ChirpMap';
 import PostCreateView from '../../components/PostCreateView/PostCreateView';
 import CreateChirp from '../../components/CreateChirp/CreateChirp';
 import Header from '../../components/Header/Header';
@@ -51,6 +52,7 @@ class PostContainer extends Component {
         <div className="container">
         <div className="columns">
         <div className="column">
+        <ChirpMap posts={this.props.posts} currentLocation={this.props.coordinates} />
         <PostListView posts={this.props.posts}/>
         </div>
         <div className="column">
@@ -84,6 +86,7 @@ PostContainer.propTypes = {
     content: PropTypes.string.isRequired,
   })).isRequired,
   dispatch: PropTypes.func.isRequired,
+  coordinates: PropTypes.array.isRequired
 };
 
 export default connect(mapStateToProps)(PostContainer);
