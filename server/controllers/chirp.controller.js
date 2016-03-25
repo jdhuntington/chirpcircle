@@ -32,6 +32,13 @@ export function getChirp(req, res) {
     });
 }
 
+export function nop(req, res) {
+  var obj = {
+    "ok": "very ok."
+  };
+  res.json(obj);
+}
+
 export function getChirps(req, res) {
     Chirp.find().sort('-dateAdded').limit(50).exec((err, chirps) => {
         if (err) {
