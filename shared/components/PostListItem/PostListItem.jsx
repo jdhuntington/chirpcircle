@@ -20,8 +20,7 @@ PostListItem.propTypes = {
         cuid: PropTypes.string.isRequired,
     }).isRequired,
 
-    onClick: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired,
+    onClick: PropTypes.func.isRequired
 };
 
 export default PostListItem;

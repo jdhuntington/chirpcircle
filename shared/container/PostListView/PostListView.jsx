@@ -4,17 +4,21 @@ import { connect } from 'react-redux';
 import * as Actions from '../../redux/actions/actions';
 
 function PostListView(props) {
-  return (
-    <div className="listView">
-      {
-        props.posts.map((post, i) => (
+  var results = [];
+  if(props && props.posts) {
+  results =  props.posts.map((post, i) => (
           <PostListItem post={post} key={i}
           onClick={function handleClick() {
             props.dispatch(Actions.addSelectedPost(post));
           }}
         />
         ))
-      }
+
+  }
+
+  return (
+    <div className="listView">
+      {results}
     </div>
   );
 }
