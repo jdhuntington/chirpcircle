@@ -39,22 +39,28 @@ class PostContainer extends Component {
   }
 
   componentDidMount() {
-    if(this.props.posts.length === 0) {
+    if(!(this.props && this.props.posts) || this.props.posts.length === 0) {
       this.props.dispatch(Actions.fetchPosts());
     }
   }
 
     render() {
+    var map = "";
+    if(this.props && this.props.posts) {
+      map = (        <div className="column">
+      <ChirpMap posts={this.props.posts} currentLocation={this.props.coordinates} />
+        <PostListView posts={this.props.posts}/>
+        </div>
+        );
+
+    }
     return (
       <div>
         <Header onClick={this.handleClick} />
         <section className="section">
         <div className="container">
         <div className="columns">
-        <div className="column">
-        <ChirpMap posts={this.props.posts} currentLocation={this.props.coordinates} />
-        <PostListView posts={this.props.posts}/>
-        </div>
+        {map}
         <div className="column">
         <CreateChirp addChirp={this.addChirp} />
         </div>
