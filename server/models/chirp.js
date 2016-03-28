@@ -18,7 +18,7 @@ var properties = {
 var options = {
     safe: {
         w: 'majority',
-        wtimeout: 10000
+        wtimeout: 1000
     }
 };
 var schema = new Schema(properties, options);

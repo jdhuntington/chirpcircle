@@ -33,6 +33,14 @@ import chirps from './routes/chirp.routes';
 import dummyData from './dummyData';
 import serverConfig from './config';
 
+// Application insights
+import appInsights from 'applicationinsights';
+appInsights.setup(serverConfig.appInsights).start();
+
+var connectionOptions = {
+  replSet: {readPreference: 'ReadPreference.SECONDARY'}
+};
+
 // MongoDB Connection
 mongoose.connect(serverConfig.mongoURL, (error) => {
   if (error) {
@@ -42,7 +50,7 @@ mongoose.connect(serverConfig.mongoURL, (error) => {
 
   // feed some dummy data in DB.
   dummyData();
-});
+}, connectionOptions);
 
 // Apply body Parser and server public assets and routes
 app.use(bodyParser.json({ limit: '20mb' }));
@@ -100,9 +108,9 @@ app.use((req, res) => {
     fetchComponentData(store.dispatch, renderProps.components, renderProps.params)
       .then(() => {
         const initialView = renderToString(
-          <Provider store={store}>
+            <Provider store={store}>
             <RouterContext {...renderProps} />
-          </Provider>
+            </Provider>
         );
         const finalState = store.getState();
 
