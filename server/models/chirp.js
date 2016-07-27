@@ -17,7 +17,6 @@ var properties = {
 
 var options = {
     safe: {
-        w: 'majority',
         wtimeout: 10000
     }
 };
